@@ -24,8 +24,8 @@ class SphinxqlServiceProvider extends ServiceProvider {
 	{
 		$this->app['sphinxql'] = $this->app->share(function($app)
 		{
-		    $host = \Config::get('sphinxql::host');
-		    $port = \Config::get('sphinxql::port');
+            $host = \Config::get('sphinx.host') ?: \Config::get('sphinxql::host');
+            $port = \Config::get('sphinx.port') ?: \Config::get('sphinxql::port');
 		    $connection = new \Foolz\SphinxQL\Connection();
 		    $connection->setConnectionParams($host, $port);		    
 		    return new Sphinxql(new \Foolz\SphinxQL\SphinxQL($connection));		    
